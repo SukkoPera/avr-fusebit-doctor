@@ -224,3 +224,19 @@ USAGE:
  See "mess_tiny13.png" to see how the same chip was broken again
  Do not suggest LEDs when in manual mode - they just blinking randomly :)
 
+FUSEBITS: internal 1MHz clock, EESAVE enabled: 
+    M8       L:0xE1 H:0xD1
+    M88,M168 L:0x62 H:0xD7 E:0xF9
+    M328     L:0x62 H:0xD1 E:0xFF
+
+_____________________
+#11 UPDATE 30.04.2011
+
+Firmware 2.11:
+-fixed bug when not writing the HIGH fusebyte (concerns all chips!)
+"Just" a typo which i made during optimalisations for 2.10 firmware :)
+
+FUSEBITS: internal 1MHz clock, EESAVE enabled: 
+    M8       L:0xE1 H:0xD1
+    M88,M168 L:0x62 H:0xD7 E:0xF9
+    M328     L:0x62 H:0xD1 E:0xFF

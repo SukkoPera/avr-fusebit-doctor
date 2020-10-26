@@ -2,7 +2,7 @@
 
 ATmega Fusebit Doctor is a device for repairing dead ATmega (and ATtiny since v2.04) family AVR microcontrollers by writing correct fusebits. Most common mistakes or problems are a wrong clock source (CKSEL fusebits), disabled SPI programming (SPIEN fuse) or disabled reset pin (RSTDISBL fuse). This simple and cheap circuit will fix you uC in a fraction of a second. If in first case we can help ourself with clock generator, then in 2nd and 3rd cases bring uC back to life is impossible with standard serial programmer. Most of people do not decide to build parallel programmer because its inconvenient and its cheaper and faster to buy new uC.
 
-Originally ATmega Fusebit Doctor was a project by Paweł Kisielewski (Manekinen). One day his website disappeared and the project was at risk of being lost forever. Luckily, I (SukkoPera) managed to salvage it with the help of Wayback Machine and decided to put it on GitHub, trying to preserve all the original contents and history. I hope people will contribute and help me make it an even better project.
+Originally ATmega Fusebit Doctor was a project by Paweł Kisielewski (Manekinen). One day his website disappeared and the project was at risk of being lost forever. Luckily, I (SukkoPera) managed to salvage it with the help of Wayback Machine and decided to put it on GitHub, trying to preserve all the original contents and history. I hope people will contribute and help make it an even better project.
 
 ## High voltage programming
 This circuit uses the parallel and serial high-voltage programming method. With those methods, we can talk to our "dead" chips which have reset or isp disabled:
@@ -114,6 +114,8 @@ Manekinen's original licensing terms say:
 > Any usage of this project in commercial/profit purposes is prohibited.
 
 They are a bit vague but they seem to match [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1) pretty well, so I think that can be used whenever a formal license is needed.
+
+Note that the firmware sources are not available. They have never been disclosed as far as I know.
 
 ## FAQ – Frequently Asked Questions (and Answers)
 

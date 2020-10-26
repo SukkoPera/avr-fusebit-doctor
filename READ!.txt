@@ -1,0 +1,62 @@
+This is a project of AVR Atmega fusebit doctor (HVPP).
+
+Hardware and software: Manekinen (Pawe³ Kisielewski)
+manekinen@gmail.com
+
+Compilator: bascom v.1.11.9.0   
+
+PCB: Eagle light v.5.4.0        
+
+Project website: http://diy.elektroda.eu/atmega-fusebit-doctor-hvpp/
+
+Any modifications allowed, do not remove this README! from archive.
+Do not remove info from pcb and code.
+
+Any usage of this project in commercial/profit purposes is prohibited.
+
+Have a question? Post in comments on site, or contact me at manekinen@gmail.com
+
+
+03.05.2010
+
+
+********************************************
+
+Firmware ver 2.0g BETA:
+
+Atmega8
+Atmega16
+Atmega32
+
+********************************************
+
+Firmware ver 2.01 BETA (15.05.2010):
+
+(76 chips)
+
+1kB:
+no chip with HVPP
+
+2kB:
+Attiny2313, Attiny26, Attiny261, Attiny28
+
+4kB:
+Atmega48, Atmega48P, Attiny461, Attiny43U, Attiny4313, Attiny48
+
+8kB:
+Atmega8515, Atmega8535, Atmega8, Atmega88, Atmega88P, AT90pwm1, AT90pwm2, AT90pwm2B, AT90pwm3, AT90pwm3B, AT90pwm81, AT90usb82, Attiny861, Attiny88
+
+16kB:
+Atmega16, Atmega16U4, Atmega16M1, Atmega161, Atmega162, Atmega163, Atmega164, Atmega164P, Atmega165, Atmega168, Atmega168P, Atmega169, AT90pwm216, AT90pwm316, AT90usb162
+
+32kB:
+Atmega32, Atmega32U4, Atmega32M1, Atmega324, Atmega324P, Atmega325, Atmega3250, Atmega325P, Atmega3250P, Atmega328, Atmega328P, Atmega329, Atmega3290, AT90can32
+
+64kB:
+Atmega64, Atmega64M1, Atmega649, Atmega6490, Atmega640, Atmega644, Atmega644P, Atmega645, Atmega6450, AT90usb646, AT90usb647, AT90can64
+
+128kB:
+Atmega103, Atmega128, Atmega1280, Atmega1281, Atmega1284, Atmega1284P, AT90usb1286, AT90usb1287, AT90can128
+
+256kB:
+Atmega2560, Atmega2561

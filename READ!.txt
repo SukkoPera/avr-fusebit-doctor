@@ -19,32 +19,42 @@ Have a question? Post in comments on site, or contact me at manekinen@gmail.com
 
 03.05.2010
 
+*******************************************************************************
 
-********************************************
+#2 UPDATE 03.06.2010
 
-Firmware ver 2.0g BETA:
+Hardware update, added two adapters:
+"#1 adapter" as HVPP extension, for 20pin Attiny26 compatible and 40pin Atmega8515 compatible processors.
+"HVSP adapter" for 8pin and 14pin HVSP processors.
 
-Atmega8
-Atmega16
-Atmega32
+Firmware update, V2.03:
+Added support for HVPP chips: AT90s8515, AT90s8535, AT90s1200, AT90s4433, AT90s4414, AT90s4434, AT90s2333
+Added support for HVSP adapter and HVSP chips: (8pin) Attiny11, Attiny12, Attiny13, Attiny15, Attiny25, Attiny45, Attiny85, Attiny22, AT90s2323, AT90s2343 (and 14pin) Attiny24, Attiny44, Attiny84
 
-********************************************
+Device will automatically detect the HVSP adapter and start in the HVSP mode (info on rs232 output).
 
-Firmware ver 2.01 BETA (15.05.2010):
+Added all sockets compatibility list with images... "B" means that this is the adapter #1 socket, and "C" - HVSP adapter socket.
+Total supported chips: 96.
+Total DIL socket compatible: 53
+Rest are SMD, no adapters yet. If you make one, please let me know.
 
-(76 chips)
+As this is now 2in1 (HVPP and HVSP) 8kB of Atmega8 memory was too short to fit all the goods inside...
+1.Not all of chips names are send over rs232, but most common. This does not affect fixing process in any way.
+2.Some of text for rs232 are holded in the eeprom memory. Even if you do not need the rs232 output, you MUST write the EEP.BIN to eeprom. This is a BIN (RAW) file, NOT hex.
 
+
+Full list:
 1kB:
-no chip with HVPP
+AT90s1200, Attiny11, Attiny12, Attiny13, Attiny15
 
 2kB:
-Attiny2313, Attiny26, Attiny261, Attiny28
+Attiny2313, Attiny26, Attiny261, Attiny28, AT90s2333, Attiny22, Attiny25, AT90s2323, AT90s2343
 
 4kB:
-Atmega48, Atmega48P, Attiny461, Attiny43U, Attiny4313, Attiny48
+Atmega48, Atmega48P, Attiny461, Attiny43U, Attiny4313, Attiny48, AT90s4433, AT90s4414, AT90s4434, Attiny45
 
 8kB:
-Atmega8515, Atmega8535, Atmega8, Atmega88, Atmega88P, AT90pwm1, AT90pwm2, AT90pwm2B, AT90pwm3, AT90pwm3B, AT90pwm81, AT90usb82, Attiny861, Attiny88
+Atmega8515, Atmega8535, Atmega8, Atmega88, Atmega88P, AT90pwm1, AT90pwm2, AT90pwm2B, AT90pwm3, AT90pwm3B, AT90pwm81, AT90usb82, AT90s8515, AT90s8535, Attiny861, Attiny88, Attiny85
 
 16kB:
 Atmega16, Atmega16U4, Atmega16M1, Atmega161, Atmega162, Atmega163, Atmega164, Atmega164P, Atmega165, Atmega168, Atmega168P, Atmega169, AT90pwm216, AT90pwm316, AT90usb162

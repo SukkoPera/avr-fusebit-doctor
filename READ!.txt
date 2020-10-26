@@ -7,7 +7,8 @@ Compiler: bascom v.1.11.9.0
 
 PCB: Eagle light v.5.4.0        
 
-Project website: http://diy.elektroda.eu/atmega-fusebit-doctor-hvpp/
+Project website:  http://diy.elektroda.eu/atmega-fusebit-doctor-hvpp/
+English language: http://diy.elektroda.eu/atmega-fusebit-doctor-hvpp/?lang=en
 
 Any modifications allowed, do not remove this README! from archive.
 Do not remove info from pcb and code.
@@ -15,6 +16,8 @@ Do not remove info from pcb and code.
 Any usage of this project in commercial/profit purposes is prohibited.
 
 Have a question? Post in comments on site, or contact me at manekinen@gmail.com
+
+For software updates notifications, follow me at http://www.twitter.com/manekinen
 
 
 03.05.2010
@@ -142,7 +145,7 @@ Hardware V2e:
 Now, circuit is more stable
 This fixes a problem when some of chips worked in non-HV mode and we can't fix the RSTDISBL fusebit.
 
-Software 2.07:
+Firmware 2.07:
 -CRITICAL FIX for AT90s1200, AT90s2313, AT90s2323, AT90s2343, AT90s4414, AT90s4434, AT90s8515, AT90s8535
 (different fusebits and lockbits adresses, see datasheet)
 -also, improved AT90s2313 default fuses - short start-up time is disabled by default.
@@ -150,3 +153,19 @@ Software 2.07:
 -fixed bug in rs232 info
 FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
 Compiled with basc-avr 2.0.4.0
+
+____________________
+#8 UPDATE 05.03.2011
+
+Firmware 2.08:
+-fixed default fuses values for: Attiny28, Atmega161, Atmega163.
+-AT90s2313 still was bugged (after critical fix in 2.07) - FIXED
+-now, you can use following (backwards compatible with m8) uC as doctor chip:
+ Atmega88, Atmega88P, Atmega168, Atmega168P, Atmega328, Atmega328P.
+ Code for 16kB and 32kB chips will send uC names trough uart (like in 2.04 firmw).
+
+FUSEBITS: internal 1MHz clock, EESAVE enabled: 
+    M8       L:0xE1 H:0xD1
+    M88,M168 L:0x62 H:0xD7 E:0xF9
+    M328     L:0x62 H:0xD1 E:0xFF
+

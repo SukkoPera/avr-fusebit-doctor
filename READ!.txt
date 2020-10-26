@@ -122,3 +122,14 @@ Firmware 2.06:
 -fixed data bug in hvsp "chip erase" command
 -added proper additional data for Attiny15 "chip erase" command
 FUSEBITS: internal 1MHz clock, EESAVE enabled ( H:0xE1 L:0xD1 )
+
+____________________
+#6 UPDATE 27.11.2010
+
+Hardware: Added a SMD version of PCB - by Shuffle (thanks!)
+-"doctor" part as smd
+-dip sockets part as a adapter
+-added usb (tf232 chip)
+
+Check the "SMD-pcb" folder, added only necessary files.
+To get original package from Shuffle (with pictures), go back to download page.

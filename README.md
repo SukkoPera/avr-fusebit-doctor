@@ -1,6 +1,8 @@
 # ATmega Fusebit Doctor (HVPP + HVSP): Fix the fusebits
 
-ATmega Fusebit Doctor, as name says it, device for repairing dead ATmega (and ATtiny from v2.04) family AVRs by writing correct fusebits. Most common mistakes or problems are a wrong clock source (CKSEL fusebits), disabled SPI programming (SPIEN fuse) or disabled reset pin (RSTDISBL fuse). This simple and cheap circuit will fix you uC in a fraction of a second. If in first case we can help ourself with clock generator, then in 2nd and 3rd cases bring uC back to life is impossible with standard serial programmer. Most of people do not decide to build parallel programmer because its inconvenient and its cheaper and faster to buy new uC.
+ATmega Fusebit Doctor is a device for repairing dead ATmega (and ATtiny since v2.04) family AVR microcontrollers by writing correct fusebits. Most common mistakes or problems are a wrong clock source (CKSEL fusebits), disabled SPI programming (SPIEN fuse) or disabled reset pin (RSTDISBL fuse). This simple and cheap circuit will fix you uC in a fraction of a second. If in first case we can help ourself with clock generator, then in 2nd and 3rd cases bring uC back to life is impossible with standard serial programmer. Most of people do not decide to build parallel programmer because its inconvenient and its cheaper and faster to buy new uC.
+
+Originally ATmega Fusebit Doctor was a project by Paweł Kisielewski (Manekinen). One day his website disappeared and the project was at risk of being lost forever. Luckily, I (SukkoPera) managed to salvage it with the help of Wayback Machine and decided to put it on GitHub, trying to preserve all the original contents and history. I hope people will contribute and help me make it an even better project.
 
 ## High voltage programming
 This circuit uses the parallel and serial high-voltage programming method. With those methods, we can talk to our "dead" chips which have reset or isp disabled:
@@ -75,44 +77,43 @@ You can find extra RS232 output, and connecting this to the terminal, sends all 
 ## Other
 Use one of the following microcontrollers as the doctor-chip: ATmega8, ATmega88, ATmega88P, ATmega168, ATmega168P, ATmega328, ATmega328P – and their newer/low-voltage "A” or "L” versions.
 
-Use stabilized 12V supply voltage. Higher voltage can damage fixed chip!
+Use stabilized 12V supply voltage. Higher voltage can damage the patient chip!
 
 Code was written based on high-voltage parallel and serial programming section of datasheet of suitable AVRs.
 
 ### Fusebits
 Internal 1MHz clock, and enabled EESAVE bit – see README file.
 
-If you use a brand new chips as doctor, you don’t need to change anything – 1MHz clock is already set as default. EESAVE bit is optional. It disallows to erase the
-eeprom when firmware is actualized, eeprom is used to store the fixed chips counter which is send trough uart.
+If you use a brand new chips as doctor, you don’t need to change anything – 1MHz clock is already set as default. EESAVE bit is optional. It disallows to erase the eeprom when firmware is actualized, eeprom is used to store the fixed chips counter which is sent trough UART.
 
+## Manual Mode
 UPDATE 2.1X ADDS NEW FUNCTIONALITY!
-Send your own fuses and locks trough terminal, talk with chips with broken
-signature. If you connect terminal Tx pin to PCB Rx pin – manual mode will be
-enabled automatically. This requires Tx-terminal pin to be HIGH and OUTPUT when
-idle. It must pull up the 10K pulldown. If this condition is not met, doctor will work in
-normal – automatic mode.
-HOWTO:
+
+Send your own fuses and locks trough terminal, talk with chips with broken signature. If you connect terminal TX pin to PCB RX pin – manual mode will be enabled automatically. This requires TX-terminal pin to be HIGH and OUTPUT when idle. It must pull up the 10K pulldown. If this condition is not met, doctor will work in normal – automatic mode.
+
+### HowTo
 First, doctor will read signature. And if fail, it will ask to type signature manually.
+
 Type two last bytes of signature in HEX (4 chars) and hit enter.
-Then, doctor will try to read the chip depending on given signature.
-When succeed, select an option:
-1 – write fusebits – this will perform a fuse write cycle with fuse-values from bu�er
-(default).
-2 – modify fusebits – this will let you to type fuses manually, values in bu�er will
-update. Type one byte in HEX (2 chars) and hit enter. Repeat for each byte (if exist).
-3 – set lockbits – type new lock value in HEX (2 chars) and hit enter – do this with
-caution! Remember that unused bits are always 1! E.g. if want to enable LB1 and
-LB2, type FC (11111100)
-4 – erase the chip – this will just erase the chip and locks, it require "allow erase”
-jumper for safety.
-7 of 33
-10/25/20, 7:37 PMATmega Fusebit Doctor (HVPP+HVSP) – fix the fusebits – md...
-https://web.archive.org/web/20180813023120/https://mdiy.pl...
-5 – end – exit programming and drop voltages, now you can safely remove the chip.
-See how ATtiny13 with broken signature was repaired.
-See how the same chip was "broken” again.
-Do not suggest LEDs when in manual mode – they just blinking randomly :)
-ATTENTION – Firmware 2.1x NEED a pcb updated to version 2h!
+
+Then doctor will try to read the chip depending on given signature.
+When this succeeds, select an option:
+1. Write fusebits: this will perform a fuse write cycle with fuse-values from buffer (default).
+2. Modify fusebits: this will let you to type fuses manually, values in buffer will update. Type one byte in HEX (2 chars) and hit enter. Repeat for each byte (if exist).
+3. Set lockbits: type new lock value in HEX (2 chars) and hit enter – do this with caution! Remember that unused bits are always 1! E.g. if want to enable LB1 and LB2, type FC (11111100).
+4. Erase the chip: This will just erase the chip and locks, it requires the "allow erase" jumper for safety.
+5. End: exit programming and drop voltages, now you can safely remove the chip.
+
+Do not pay attention to the LEDs when in manual mode – they will just blink randomly :).
+
+## License
+Manekinen's original licensing terms say:
+
+> Any modifications allowed, do not remove this README! from archive. Do not remove info from pcb and code.
+>
+> Any usage of this project in commercial/profit purposes is prohibited.
+
+They are a bit vague but they seem to match [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1) pretty well, so I think that can be used whenever a formal license is needed.
 
 ## FAQ – Frequently Asked Questions (and Answers)
 
@@ -167,4 +168,3 @@ A: This circuit is not meant to be used without a patient. It acts in such way b
 
 Q: Chip names are not appearing in the log, i see "no names in 8kB ver" instead.
 A: Chip names are not displayed in 8kB versions of the firmware, i.e. for ATmega8 and ATmega88 – because names don’t fit in such memory space. If you want the names, use ATmega168 or ATmega328 chip and burn proper firmware. ALWAYS use the newest version of the firmware. Hex and bin files are the flash memory files, use one of them. No need to program eeprom memory.
-

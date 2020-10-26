@@ -3,7 +3,7 @@ This is a project of AVR Atmega fusebit doctor (HVPP+HVSP).
 Hardware and software: Manekinen (Pawe³ Kisielewski)
 manekinen@gmail.com
 
-Compilator: bascom v.1.11.9.0   
+Compiler: bascom v.1.11.9.0   
 
 PCB: Eagle light v.5.4.0        
 
@@ -31,7 +31,7 @@ Attiny2313/A, Attiny24/A, Attiny26, Attiny261/A, Attiny28, AT90s2333, Attiny22, 
 4kB:
 Atmega48, Atmega48P/A, Attiny461/A, Attiny43U, Attiny4313, Attiny44/A, Attiny48, AT90s4433, AT90s4414, AT90s4434, Attiny45
 8kB:
-Atmega8515, Atmega8535, Atmega8, Atmega88, Atmega88P/A, AT90pwm1, AT90pwm2, AT90pwm2B, AT90pwm3, AT90pwm3B, AT90pwm81, AT90usb82, Attiny861/A, Attiny87, Attiny88, Attiny85, AT90s8515, AT90s8535
+Atmega8515, Atmega8535, Atmega8, Atmega88, Atmega88P/A, AT90pwm1, AT90pwm2, AT90pwm2B, AT90pwm3, AT90pwm3B, AT90pwm81, AT90usb82, Attiny84, Attiny85, Attiny861/A, Attiny87, Attiny88, AT90s8515, AT90s8535
 16kB:
 Atmega16/A, Atmega16U2, Atmega16U4, Atmega16M1, Atmega161, Atmega162, Atmega163, Atmega164, Atmega164P/A, Atmega165/P/A/PA, Atmega168, Atmega168P/A, Atmega169/P/A/PA, Attiny167, AT90pwm216, AT90pwm316, AT90usb162
 32kB:
@@ -57,7 +57,7 @@ Hardware 2.0c PCB
 Firmware 2.0g BETA:
 -first public release
 -support only Atmega8, Atmega16, Atmega32
-FUSEBITS: internal 8MHz clock, EESAVE enabled ( H:0xE4 L:0xD1 )
+FUSEBITS: internal 8MHz clock, EESAVE enabled ( L:0xE4 H:0xD1 )
 
 ____________________
 #1 UPDATE 15.05.2010
@@ -67,7 +67,7 @@ Hardware 2.0d PCB:
 
 Firmware 2.01 BETA:
 -added support for 73 chips, total 76
-FUSEBITS: internal 8MHz clock, EESAVE enabled ( H:0xE4 L:0xD1 )
+FUSEBITS: internal 8MHz clock, EESAVE enabled ( L:0xE4 H:0xD1 )
 
 
 ____________________
@@ -81,7 +81,7 @@ Firmware 2.03:
 -added support for HVPP chips: AT90s8515, AT90s8535, AT90s1200, AT90s4433, AT90s4414, AT90s4434, AT90s2333
 -added support for HVSP adapter and HVSP chips: (8pin) Attiny11, Attiny12, Attiny13, Attiny15, Attiny25, Attiny45, Attiny85, Attiny22, AT90s2323, AT90s2343 (and 14pin) Attiny24, Attiny44, Attiny84
 -device will automatically detect the HVSP adapter and start in the HVSP mode (info on rs232 output).
-FUSEBITS: internal 8MHz clock, EESAVE enabled ( H:0xE4 L:0xD1 )
+FUSEBITS: internal 8MHz clock, EESAVE enabled ( L:0xE4 H:0xD1 )
 
 Other:
 -added all sockets compatibility list with images... "B" means that this is the adapter #1 socket, and "C" - HVSP adapter socket.
@@ -99,7 +99,7 @@ Firmware 2.04:
 -internal clock change to 1MHz, budrate on UART output change to 2400bps
 ATTENTION, FUSEBITS! If you make an update of firmware to 2.04, please change the internal clock generator to 1MHz.
 If you make this circuit from beginning, just set the EESAVE fusebit – 1MHz clock is already set as default.
-FUSEBITS: internal 1MHz clock, EESAVE enabled ( H:0xE1 L:0xD1 )
+FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
 
 ____________________
 #4 UPDATE 18.08.2010
@@ -111,7 +111,7 @@ Firmware 2.05:
 -fixed attiny26 issues
 -no chip names trough uart
 -uart baudrate 4800 (2400 was just too slow)
-FUSEBITS: internal 1MHz clock, EESAVE enabled ( H:0xE1 L:0xD1 )
+FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
 
 ____________________
 #5 UPDATE 07.11.2010
@@ -121,7 +121,7 @@ Firmware 2.06:
 -added proper timings for Attiny15 on PB.3
 -fixed data bug in hvsp "chip erase" command
 -added proper additional data for Attiny15 "chip erase" command
-FUSEBITS: internal 1MHz clock, EESAVE enabled ( H:0xE1 L:0xD1 )
+FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
 
 ____________________
 #6 UPDATE 27.11.2010
@@ -133,3 +133,20 @@ Hardware: Added a SMD version of PCB - by Shuffle (thanks!)
 
 Check the "SMD-pcb" folder, added only necessary files.
 To get original package from Shuffle (with pictures), go back to download page.
+
+____________________
+#7 UPDATE 23.01.2011
+
+Hardware V2e:
+-added a 100ohm pulldown resistor for +5V line
+Now, circuit is more stable
+This fixes a problem when some of chips worked in non-HV mode and we can't fix the RSTDISBL fusebit.
+
+Software 2.07:
+-CRITICAL FIX for AT90s1200, AT90s2313, AT90s2323, AT90s2343, AT90s4414, AT90s4434, AT90s8515, AT90s8535
+(different fusebits and lockbits adresses, see datasheet)
+-also, improved AT90s2313 default fuses - short start-up time is disabled by default.
+-added new chips to uc's database: Atmega406, Atmega16HVB, Atmega32HB (not listed above). Those are supported theoretically, see datasheet how to program "battery magament avr's". 
+-fixed bug in rs232 info
+FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
+Compiled with basc-avr 2.0.4.0

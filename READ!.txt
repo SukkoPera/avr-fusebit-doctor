@@ -149,7 +149,7 @@ Firmware 2.07:
 -CRITICAL FIX for AT90s1200, AT90s2313, AT90s2323, AT90s2343, AT90s4414, AT90s4434, AT90s8515, AT90s8535
 (different fusebits and lockbits adresses, see datasheet)
 -also, improved AT90s2313 default fuses - short start-up time is disabled by default.
--added new chips to uc's database: Atmega406, Atmega16HVB, Atmega32HB (not listed above). Those are supported theoretically, see datasheet how to program "battery magament avr's". 
+-added new chips to uc's database: Atmega406, Atmega16HVB, Atmega32HVB (not listed above). Those are supported theoretically, see datasheet how to program "battery magament avr's". 
 -fixed bug in rs232 info
 FUSEBITS: internal 1MHz clock, EESAVE enabled ( L:0xE1 H:0xD1 )
 Compiled with basc-avr 2.0.4.0
@@ -189,4 +189,38 @@ Hardware V2g:
 -added AVCC connection on main PCB - needed in M168 and M328
 -added pullup resistor on doctor's reset pin
  Update PCB if you experience problems
+
+_____________________
+#10 UPDATE 20.03.2011
+
+Hardware V.2h:
+ -added Rx pin as goldpin as 3rd pin in RS232 connector
+ -added pulldown resistor for Rx pin - this is NECESSARY when updating to 2.10!
+
+
+Firmware 2.10:
+-new feature: send your own fuses and locks trough terminal, talk with chips with broken signature.
+
+ If you connect terminal Tx pin to PCB Rx pin - manual mode will be enabled automatically.
+ This requires Tx-terminal pin to be HIGH and OUTPUT when idle. It must pull up the 10K pulldown.
+ If this condition is not met, doctor will work in normal - automatic mode.
+
+USAGE:
+
+ First, doctor will read signature. And if fail, it will ask to type signature manually.
+    Type two last bytes of signature in HEX (4 chars) and hit enter.
+
+ Then, doctor will try to read the chip depending on given signature.
+    When succeed, select an option:
+    1 - write fusebits - this will perform a fuse write cycle with fuse-values from buffer (default).
+    2 - modify fusebits - this will let you to type fuses manually, values in buffer will update.
+        Type one byte in HEX (2 chars) and hit enter. Repeat for each byte (if exist).
+    3 - set lockbits - type new lock value in HEX (2 chars) and hit enter - do this with caution!
+        Remember that unused bits are always 1! E.g. if want to enable LB1 and LB2, type FC (11111100)
+    4 - erase the chip - this will just erase the chip and locks, it require "allow erase" jumper for safety.
+    5 - end - exit programming and drop voltages, now you can safely remove the chip.
+
+ See "fix_tiny13.png" to see how Attiny13 with broken signature was repaired
+ See "mess_tiny13.png" to see how the same chip was broken again
+ Do not suggest LEDs when in manual mode - they just blinking randomly :)
 
